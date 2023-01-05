@@ -1,12 +1,11 @@
 package ru.shishov.onlinelibrary.services;
 
-import org.hibernate.Hibernate;
+import ru.shishov.onlinelibrary.models.Book;
+import ru.shishov.onlinelibrary.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.shishov.onlinelibrary.models.Book;
 import ru.shishov.onlinelibrary.models.Person;
-import ru.shishov.onlinelibrary.repositories.PeopleRepository;
 
 import java.util.Collections;
 import java.util.List;

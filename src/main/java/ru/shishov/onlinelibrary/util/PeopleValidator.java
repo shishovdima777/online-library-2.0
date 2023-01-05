@@ -1,12 +1,11 @@
 package ru.shishov.onlinelibrary.util;
 
+import ru.shishov.onlinelibrary.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.shishov.onlinelibrary.dao.PersonDAO;
 import ru.shishov.onlinelibrary.models.Person;
-import ru.shishov.onlinelibrary.services.PeopleService;
 
 @Component
 public class PeopleValidator implements Validator {

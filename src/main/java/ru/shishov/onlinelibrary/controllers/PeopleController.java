@@ -1,15 +1,14 @@
 package ru.shishov.onlinelibrary.controllers;
 
 
+import ru.shishov.onlinelibrary.services.PeopleService;
+import ru.shishov.onlinelibrary.util.PeopleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.shishov.onlinelibrary.models.Person;
-import ru.shishov.onlinelibrary.services.BooksService;
-import ru.shishov.onlinelibrary.services.PeopleService;
-import ru.shishov.onlinelibrary.util.PeopleValidator;
 
 import javax.validation.Valid;
 

@@ -1,12 +1,11 @@
 package ru.shishov.onlinelibrary.services;
 
+import ru.shishov.onlinelibrary.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.shishov.onlinelibrary.models.Book;
 import ru.shishov.onlinelibrary.models.Person;
 import ru.shishov.onlinelibrary.repositories.BooksRepository;
 
@@ -76,5 +75,9 @@ public class BooksService {
     public Person getOwner(int id) {
         Optional<Book> book = booksRepository.findById(id);
         return book.map(Book::getOwner).orElse(null);
+    }
+
+    public List<Book> findBookByBookNameContainingIgnoreCase(String book) {
+        return booksRepository.findBookByBookNameContainingIgnoreCase(book);
     }
 }

@@ -1,15 +1,15 @@
 package ru.shishov.onlinelibrary.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 import ru.shishov.onlinelibrary.models.Book;
 import ru.shishov.onlinelibrary.models.Person;
 import ru.shishov.onlinelibrary.services.BooksService;
 import ru.shishov.onlinelibrary.services.PeopleService;
 import ru.shishov.onlinelibrary.util.BooksValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -40,6 +40,15 @@ public class BooksController {
             model.addAttribute("books", booksService.findWithBooksPerPage(page, booksPerPage, sortByYear));
 
         return "books/books";
+    }
+    @GetMapping("/search")
+    public String searchBook(@RequestParam(value = "book", required = false) String book,
+                             Model model){
+
+        if(book != null && book.length() != 0)
+            model.addAttribute("bookList", booksService.findBookByBookNameContainingIgnoreCase(book));
+
+        return "books/search";
     }
 
     @GetMapping("/new")
@@ -76,7 +85,7 @@ public class BooksController {
 
     @GetMapping("/{id}")
     public String showBook(@PathVariable("id") int id, Model model,
-                           @ModelAttribute("person")Person person) {
+                           @ModelAttribute("person") Person person) {
         model.addAttribute("book", booksService.findOne(id));
 
         Person bookOwner = booksService.getOwner(id);
@@ -98,7 +107,7 @@ public class BooksController {
     @PatchMapping("/{id}/assign")
     public String assignBook(@PathVariable("id") int id,
                              @ModelAttribute("person") Person person) {
-        booksService.update(id, person);                                             // Ёу тут баг
+        booksService.update(id, person);
         return "redirect:/books/{id}";
     }
 

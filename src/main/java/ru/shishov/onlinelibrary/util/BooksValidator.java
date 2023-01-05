@@ -1,12 +1,11 @@
 package ru.shishov.onlinelibrary.util;
 
+import ru.shishov.onlinelibrary.models.Book;
+import ru.shishov.onlinelibrary.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.shishov.onlinelibrary.dao.BookDAO;
-import ru.shishov.onlinelibrary.models.Book;
-import ru.shishov.onlinelibrary.services.BooksService;
 
 @Component
 public class BooksValidator implements Validator {

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search book</title>
+</head>
+<body>
+    <form th:method="GET" th:action="@{/books/search}">
+        <label for="book-search">Enter name of a book: </label>
+        <input type="search" id="book-search" th:name="book"/>
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${bookList}">
+
+        <div th:if="${bookList.size() > 0}" th:each="book : ${bookList}">
+            <a th:href="@{{id}(id=${book.getBook_id()})}" th:text="${book.getBookName()}"></a>,
+            <a th:href="@{{id}(id=${book.getBook_id()})}" th:text="${book.getAuthor()}"></a>,
+            <a th:href="@{{id}(id=${book.getBook_id()})}" th:text="${book.getYear()}"></a>
+        </div>
+
+        <p th:unless="${bookList.size() > 0}">Didn't find any books that match the query</p>
+
+    </div>
+
+</body>
+</html>
