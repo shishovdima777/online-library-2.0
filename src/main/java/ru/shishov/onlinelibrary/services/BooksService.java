@@ -1,6 +1,9 @@
 package ru.shishov.onlinelibrary.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.shishov.onlinelibrary.models.Book;
@@ -19,8 +22,21 @@ public class BooksService {
     public BooksService(BooksRepository booksRepository) {
         this.booksRepository = booksRepository;
     }
-    public List<Book> findAll() {
-        return booksRepository.findAll();
+    public List<Book> findAll(boolean sortByYear) {
+        if(!sortByYear)
+            return booksRepository.findAll();
+        else {
+            List<Book> bookList = booksRepository.findAll();
+            bookList.sort((b1, b2) -> Integer.compare(b2.getYear(), b1.getYear()));
+            return bookList;
+        }
+    }
+
+    public List<Book>findWithBooksPerPage(Integer page, Integer booksPerPage, boolean sortByYear) {
+        if(!sortByYear)
+            return booksRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+        else
+            return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("year").descending())).getContent();
     }
 
     @Transactional
