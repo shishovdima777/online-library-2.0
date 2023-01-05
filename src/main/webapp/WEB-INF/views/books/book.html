@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book</title>
+</head>
+
+<style>
+    h1 { display: inline}
+    p { display: inline}
+    a {display: block}
+</style>
+
+<body>
+<h1 th:text="${book.getBookName()}"></h1>,
+<h1 th:text="${book.getAuthor()}"></h1>,
+<h1 th:text="${book.getYear()}"></h1>
+
+<div>
+    <div th:if="${people}">
+        <p>This book is available to take. To whom add this book?</p>
+
+        <form th:method="PATCH" th:action="@{{id}/assign(id=${book.getBook_id()})}">
+            <label for="person">Choose person: </label>
+            <select th:object="${person}" th:field="*{person_id}" id="person">
+                <option th:each="person : ${people}" th:value="${person.getPerson_id()}" th:text="${person.getName()}">
+                </option>
+            </select>
+            <input type="submit" value="assign"/>
+        </form>
+    </div>
+
+    <div th:unless="${people}">
+        <p>This book was taken by: </p>
+        <p th:text="${owner}"></p>
+        <form th:method="PATCH" th:action="@{{id}/release(id=${book.getBook_id()})}">
+            <input type="submit" value="Release the book"/>
+        </form>
+    </div>
+</div>
+
+<a th:href="@{{id}/edit(id=${book.getBook_id()})}">Edit book</a>
+<form th:method="DELETE" th:action="@{{id}(id=${book.getBook_id()})}">
+    <input type="submit" value="delete" />
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add new book</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/books}" th:object="${book}">
+    <div>
+        <label for="name">Enter name of book: </label>
+        <input th:type="text" id="name" th:field="*{bookName}"/>
+        <div style="color: red" th:if="${#fields.hasErrors('bookName')}" th:errors="*{bookName}"></div>
+    </div>
+    <div>
+        <label for="author">Enter name of author: </label>
+        <input th:type="text" id="author" th:field="*{author}"/>
+        <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
+    </div>
+    <div>
+        <label for="year">Enter year: </label>
+        <input th:type="text" id="year" th:field="*{year}"/>
+        <div style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+    </div>
+    <input type="submit" value="Add"/>
+</form>
+</body>
+</html>
