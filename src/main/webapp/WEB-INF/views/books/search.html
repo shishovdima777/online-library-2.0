@@ -8,7 +8,7 @@
     <title>Search book</title>
 </head>
 <body>
-    <form th:method="GET" th:action="@{/books/search}">
+    <form th:method="GET" th:action="@{/viewBooks/search}">
         <label for="book-search">Enter name of a book: </label>
         <input type="search" id="book-search" th:name="book"/>
         <button type="submit">Search</button>
@@ -22,7 +22,7 @@
             <a th:href="@{{id}(id=${book.getBook_id()})}" th:text="${book.getYear()}"></a>
         </div>
 
-        <p th:unless="${bookList.size() > 0}">Didn't find any books that match the query</p>
+        <p th:unless="${bookList.size() > 0}" style="color: red">Didn't find any books that match the query</p>
 
     </div>
 

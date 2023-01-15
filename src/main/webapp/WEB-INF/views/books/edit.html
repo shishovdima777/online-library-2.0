@@ -8,7 +8,7 @@
     <title>Edit book</title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getBook_id()})}" th:object="${book}">
+<form th:method="PATCH" th:action="@{/viewBooks/{id}(id=${book.getBook_id()})}" th:object="${book}">
     <div>
         <label for="name">Change name of book: </label>
         <input th:type="text" id="name" th:field="*{bookName}"/>

@@ -8,7 +8,7 @@
     <title>Add new book</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/books}" th:object="${book}">
+<form th:method="POST" th:action="@{/viewBooks}" th:object="${book}">
     <div>
         <label for="name">Enter name of book: </label>
         <input th:type="text" id="name" th:field="*{bookName}"/>

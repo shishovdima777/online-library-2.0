@@ -66,7 +66,7 @@ public class BooksController {
             return "books/new";
 
         booksService.save(book);
-        return "redirect:/books";
+        return "redirect:/viewBooks";
     }
 
     @GetMapping("/{id}/edit")
@@ -81,7 +81,7 @@ public class BooksController {
                            BindingResult bindingResult){
         booksValidator.validate(book, bindingResult);
         booksService.update(id, book);
-        return "redirect:/books";
+        return "redirect:/viewBooks";
     }
 
     @GetMapping("/{id}")
@@ -102,19 +102,19 @@ public class BooksController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         booksService.delete(id);
-        return "redirect:/books";
+        return "redirect:/viewBooks";
     }
 
     @PatchMapping("/{id}/assign")
     public String assignBook(@PathVariable("id") int id,
                              @ModelAttribute("person") Person person) {
         booksService.update(id, person);
-        return "redirect:/books/{id}";
+        return "redirect:/viewBooks/{id}";
     }
 
     @PatchMapping("/{id}/release")
     public String release(@PathVariable("id") int id) {
         booksService.update(id);
-        return "redirect:/books/{id}";
+        return "redirect:/viewBooks/{id}";
     }
 }
