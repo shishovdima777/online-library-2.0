@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 
 @Controller
-@RequestMapping("/books")
+@RequestMapping("/viewBooks")
 public class BooksController {
     private final BooksValidator booksValidator;
     private final BooksService booksService;
@@ -41,6 +41,7 @@ public class BooksController {
 
         return "books/books";
     }
+
     @GetMapping("/search")
     public String searchBook(@RequestParam(value = "book", required = false) String book,
                              Model model){

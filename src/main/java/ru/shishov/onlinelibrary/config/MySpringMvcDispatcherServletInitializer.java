@@ -1,5 +1,6 @@
 package ru.shishov.onlinelibrary.config;
 
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -10,13 +11,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import java.util.EnumSet;
 
-public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MySpringMvcDispatcherServletInitializer extends
+        AbstractAnnotationConfigDispatcherServletInitializer {
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[0];
+        return new Class[] {SpringConfig.class, SecurityConfig.class};
     }
 
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {SpringConfig.class};
+        return null;
     }
 
     protected String[] getServletMappings() {

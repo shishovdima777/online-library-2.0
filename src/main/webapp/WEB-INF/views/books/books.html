@@ -8,10 +8,13 @@
     <title>All books</title>
 </head>
 <body>
+<form th:action="@{/logout}" th:method="POST" style="position: absolute; top: 50px; right: 50px">
+    <input type="submit" value="Logout!"/>
+</form>
 <div th:each="book : ${books}">
-    <a th:href="@{books/{id}(id=${book.getBook_id()})}" th:text="${book.getBookName()}"></a>,
-    <a th:href="@{books/{id}(id=${book.getBook_id()})}" th:text="${book.getAuthor()}"></a>,
-    <a th:href="@{books/{id}(id=${book.getBook_id()})}" th:text="${book.getYear()}"></a>
+    <a th:href="@{books/{id}(id=${book.book_id})}" th:text="${book.getBookName()}"></a>,
+    <a th:href="@{books/{id}(id=${book.book_id})}" th:text="${book.getAuthor()}"></a>,
+    <a th:href="@{books/{id}(id=${book.book_id})}" th:text="${book.getYear()}"></a>
 </div>
 <div style="border-bottom: 1px solid grey"></div>
 <a th:href="@{/books/new}">Add book</a>
