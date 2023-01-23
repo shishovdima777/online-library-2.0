@@ -3,6 +3,8 @@ package ru.shishov.onlinelibrary.models;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "Book")
@@ -20,6 +22,9 @@ public class Book {
     @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int book_id;
+    @Column(name = "book_taken_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date bookTakenAt;
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")
     private Person owner;
@@ -73,6 +78,15 @@ public class Book {
     public void setYear(int year) {
         this.year = year;
     }
+
+    public Date getBookTakenAt() {
+        return bookTakenAt;
+    }
+
+    public void setBookTakenAt(Date bookTakenAt) {
+        this.bookTakenAt = bookTakenAt;
+    }
+
     @Override
     public String toString() {
         return "Book{" +

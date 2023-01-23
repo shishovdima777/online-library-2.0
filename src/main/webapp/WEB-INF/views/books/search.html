@@ -20,10 +20,9 @@
             <a th:href="@{{id}(id=${book.getBook_id()})}" th:text="${book.getBookName()}"></a>,
             <a th:href="@{{id}(id=${book.getBook_id()})}" th:text="${book.getAuthor()}"></a>,
             <a th:href="@{{id}(id=${book.getBook_id()})}" th:text="${book.getYear()}"></a>
+            <p th:if="${book.getOwner()}" style="display: inline"> - This book is taken by: <a th:href="@{/people/{id}(id=${book.getOwner().person_id})}" th:text="${book.getOwner().getName()}"></a></p>
         </div>
-
         <p th:unless="${bookList.size() > 0}" style="color: red">Didn't find any books that match the query</p>
-
     </div>
 
 </body>

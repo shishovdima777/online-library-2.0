@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.shishov.onlinelibrary.models.Person;
 import ru.shishov.onlinelibrary.repositories.BooksRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +60,9 @@ public class BooksService {
 
     @Transactional
     public void update(int id, Person bookOwner) {
-        findOne(id).setOwner(bookOwner);
+        Book book = findOne(id);
+        book.setBookTakenAt(new Date());
+        book.setOwner(bookOwner);
     }
 
     @Transactional
